@@ -1,35 +1,26 @@
 <template>
-    <p>This example creates a simple layout with field headers.</p>
-    <div class="c-container">
+    <div class="c-container lgc-bg">
+        <h1 class="slds-page-header">Currency converter LWC</h1>
         <lightning-layout>
-            <lightning-layout-item padding="around-small">
-                <div class="header-column">
-                    <p class="field-title" title="Field 1">Field 1</p>
-                    <p>Name</p>
-                </div>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-input type="number" step="0.01" name="firstValue" value={firstAmount} onchange={convert}>
+                </lightning-input>
             </lightning-layout-item>
-            <lightning-layout-item padding="around-small">
-                <div class="header-column">
-                    <p class="field-title" title="Field2 (3)">Field 2 (3)
-                        <lightning-button-icon icon-name="utility:down" variant="border-filled" size="small"
-                            alternative-text="More Actions"></lightning-button-icon>
-                    </p>
-                    <p>Eligibility</p>
-                </div>
+            <lightning-layout-item>
+                <lightning-select name="Cur1" value={selectedCurrency1} onchange={convert}>
+
+                </lightning-select>
             </lightning-layout-item>
-            <lightning-layout-item padding="around-small">
-                <div class="header-column">
-                    <p class="field-title" title="Field 3">Field 3</p>
-                    <a href="#">Website</a>
-                </div>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-input type="number" step="0.01" name="secondValue" value={secondAmount} onchange={convert}>
+                </lightning-input>
             </lightning-layout-item>
-            <lightning-layout-item padding="around-small">
-                <div class="header-column">
-                    <p class="field-title" title="Field 4">Field 4</p>
-                    <p>
-                        <span title="">Address</span>
-                    </p>
-                </div>
+            <lightning-layout-item flexibility="auto, no-grow" padding="around-small">
+                <lightning-select name="Cur2" value={selectedCurrency2} onchange={convert}>
+
+                </lightning-select>
             </lightning-layout-item>
         </lightning-layout>
     </div>
