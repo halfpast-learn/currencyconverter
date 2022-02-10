@@ -15,7 +15,7 @@
                     onchange="{!c.convert}"></lightning:input>
             </lightning:layoutItem>
             <lightning:layoutItem flexibility="auto, no-grow" padding="around-small">
-                <lightning:select name="Cur1" value="{!v.selectedCurrency1}" required="true" onchange="{!c.convert}">
+                <lightning:select name="Cur1" value="{!v.selectedCurrency1}" onchange="{!c.convert}">
                     <option value="{!null}">Please select</option>
                     <aura:iteration items="{!v.currencyList}" var="curr">
                         <option value="{!curr.value}">{!curr}</option>
@@ -29,7 +29,7 @@
                     onchange="{!c.convert}"></lightning:input>
             </lightning:layoutItem>
             <lightning:layoutItem flexibility="auto, no-grow" padding="around-small">
-                <lightning:select name="Cur2" value="{!v.selectedCurrency2}" required="true" onchange="{!c.convert}">
+                <lightning:select name="Cur2" value="{!v.selectedCurrency2}" onchange="{!c.convert}">
                     <option value="{!null}">Please select</option>
                     <aura:iteration items="{!v.currencyList}" var="curr">
                         <option value="{!curr.value}">{!curr}</option>
