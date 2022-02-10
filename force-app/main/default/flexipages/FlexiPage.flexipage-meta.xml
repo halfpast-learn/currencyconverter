@@ -13,12 +13,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>home:eventContainer</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:recentRecordContainer</componentName>
+                <componentName>currencyConverterLWC</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -28,12 +23,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:topDealsContainer</componentName>
+                <componentName>currencyConverter</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -46,16 +36,11 @@
                 <componentName>home:assistant</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>currencyConverter</componentName>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Стандартная начальная страница</masterLabel>
+    <masterLabel>Default Home Page</masterLabel>
     <parentFlexiPage>home__desktopDefault</parentFlexiPage>
     <template>
         <name>home:desktopTemplate</name>

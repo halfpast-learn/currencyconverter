@@ -5,5 +5,5 @@ export default class CurrencyConverterLWC extends LightningElement {
     secondAmount;
     selectedCurrency2;
     selectedCurrency1
-    convert(event) { console.log("convert worked, event:\n" + event); }
+    convert(event) { }
 }
