@@ -8,9 +8,9 @@
             </lightning-layout-item>
             <lightning-layout-item>
                 <lightning-select name="Cur1" value={selectedCurrency1} onchange={convert}>
-                    <!--<template  for:each={bears.data} for:item="bear">
-                            <option key={bear.Id} value={bear.Id} >{bear.Name}</option>
-                        </template>-->
+                    <template for:each={currencies} for:item="currency">
+                        <option key={currency} value={currency}>{currency}</option>
+                    </template>
                 </lightning-select>
             </lightning-layout-item>
         </lightning-layout>
