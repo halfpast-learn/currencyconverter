@@ -8,8 +8,8 @@
             </lightning-layout-item>
             <lightning-layout-item>
                 <lightning-select name="Cur1" value={selectedCurrency1} onchange={convert}>
-                    <template for:each={currencies} for:item="currency">
-                        <option key={currency} value={currency}>{currency}</option>
+                    <template for:each={currencyNames} for:item="curr">
+                        <option key={curr.name}>{curr.name}</option>
                     </template>
                 </lightning-select>
             </lightning-layout-item>

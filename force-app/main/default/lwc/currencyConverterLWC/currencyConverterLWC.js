@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { api, LightningElement } from 'lwc';
 
 export default class CurrencyConverterLWC extends LightningElement {
     firstAmount;
@@ -8,12 +8,21 @@ export default class CurrencyConverterLWC extends LightningElement {
     rates;
     currencies;
     convert(event) { }
-    doInit(event) {
+    connectedCallback() {
         const api = "https://api.exchangerate-api.com/v4/latest/USD";
         fetch(api).then(response => response.json())
             .then(data => {
-                currencies=Object.keys(data.rates);
-                rates=data.rates;
+                this.currencies = Object.keys(data.rates);
+                this.rates = data.rates;
+                console.log(this.rates);
             });
+    }
+    @api
+    get currencyNames() {
+        let result = [];
+        for (let i = 0; i < this.currencies.length; i++) {
+            result.push({ name: currencies[i] });
+        }
+        return result;
     }
 }
