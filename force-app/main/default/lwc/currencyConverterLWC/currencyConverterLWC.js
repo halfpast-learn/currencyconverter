@@ -6,17 +6,18 @@ export default class CurrencyConverterLWC extends LightningElement {
     selectedCurrency2;
     selectedCurrency1;
     rates;
-    @api currencies = {id:"abc1", name:"usd1"};
+    @api currencies = [{id:"abc1", name:"usd1"}];
     convert(event) { }
-    /*connectedCallback() {
+    connectedCallback() {
         const api = "https://api.exchangerate-api.com/v4/latest/USD";
-        fetch(api).then(response => response.json())
+        console.log(this.currencies[0].id,this.currencies[0].name);
+        /*fetch(api).then(response => response.json())
             .then(data => {
                 this.currencies = Object.keys(data.rates);
                 this.rates = data.rates;
                 console.log(this.rates);
-            });
-    }*/
+            });*/
+    }
     //TODO:
     //does pre-populated list work?
     //try wiring: https://www.sfdcpoint.com/salesforce/foreach-template-directives-in-lwc/
