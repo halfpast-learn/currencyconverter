@@ -3,7 +3,7 @@
         <h1 class="slds-page-header">Currency converter LWC</h1>
         <lightning-layout padding="around-small">
             <lightning-layout-item flexibility="auto" padding="around-small">
-                <lightning-input type="number" step="0.01" name="firstAmount" value={firstAmount}
+                <lightning-input min="0" type="number" step="0.01" name="firstAmount" value={firstAmount}
                     onchange={handleChange}>
                 </lightning-input>
             </lightning-layout-item>
@@ -15,7 +15,7 @@
         </lightning-layout>
         <lightning-layout>
             <lightning-layout-item flexibility="auto" padding="around-small">
-                <lightning-input type="number" step="0.01" name="secondAmount" value={secondAmount}
+                <lightning-input min="0" type="number" step="0.01" name="secondAmount" value={secondAmount}
                     onchange={handleChange}>
                 </lightning-input>
             </lightning-layout-item>

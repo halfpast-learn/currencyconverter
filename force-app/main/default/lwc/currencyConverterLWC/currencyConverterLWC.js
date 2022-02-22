@@ -9,8 +9,7 @@ export default class CurrencyConverterLWC extends LightningElement {
     @api currencies = [];
 
     connectedCallback() {
-        const api = "https://api.exchangerate-api.com/v4/latest/USD";
-        fetch(api)
+        fetch('https://api.exchangerate-api.com/v4/latest/USD')
             .then(response => response.json())
             .then(data => {
                 this.currencies = Object.keys(data.rates).map(rate => ({ label: rate, value: rate }));
@@ -24,46 +23,20 @@ export default class CurrencyConverterLWC extends LightningElement {
         return result;
     }
 
-    convert(event) {
-        const isFirstAmount = event.target.name === 'firstAmount';
-        const amount = isFirstAmount ? this.firstAmount : this.secondAmount;
+    convert({ name }) {
+        const isSecondAmount = name === 'secondAmount' || !this.firstAmount && this.secondAmount;
+        const amount = isSecondAmount ? this.secondAmount : this.firstAmount;
         const rates = [this.rates[this.firstSelectedCurrency], this.rates[this.secondSelectedCurrency]];
-        const result = this.calculateConversion(amount, ...(isFirstAmount ? rates : rates.reverse()));
+        const result = this.calculateConversion(amount, ...(isSecondAmount ? rates.reverse() : rates));
         if (isNaN(result)) return;
-        this[isFirstAmount ? 'secondAmount' : 'firstAmount'] = result.toFixed(2);
+        this[isSecondAmount ? 'firstAmount' : 'secondAmount'] = result.toFixed(2);
     }
 
-    canConvert() {
-        if (isNaN(this.rates[this.firstSelectedCurrency])
-            || isNaN(this.rates[this.secondSelectedCurrency])) {
-            return false;
-        }
-        else if (isNaN(this.firstAmount) && isNaN(this.secondAmount)) {
-            return false;
-        }
-        else {
-            return true;
+    handleChange({ target }) {
+
+        this[target.name] = target.value;
+        if ((this.firstAmount || this.secondAmount) && this.firstSelectedCurrency && this.secondSelectedCurrency) {
+            this.convert(target);
         }
     }
-
-    handleChange(event) {
-        var caller = event.target.name;
-        var val = event.target.value;
-
-        if (caller === 'firstAmount')
-            this.firstAmount = val;
-        else if (caller === 'secondAmount')
-            this.secondAmount = val;
-        else if (caller === 'firstSelectedCurrency')
-            this.firstSelectedCurrency = val;
-        else if (caller === 'secondSelectedCurrency')
-            this.secondSelectedCurrency = val;
-
-        if (this.canConvert()) {
-            this.convert(event);
-        }
-    }
-
-
-
-}
+}   
