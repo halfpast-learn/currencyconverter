@@ -18,27 +18,22 @@ export default class CurrencyConverterLWC extends LightningElement {
             });
     }
 
-    calculateConversion(from, rateFirst, rateSecond) {
-        var valueInUSD = parseFloat(from) / parseFloat(rateFirst);
-        var result = valueInUSD * parseFloat(rateSecond);
+    calculateConversion(amount, primaryRate, secondaryRate) {
+        var rateCoeff = parseFloat(secondaryRate) / parseFloat(primaryRate);
+        var result = parseFloat(amount) * parseFloat(rateCoeff);
         return result;
     }
 
     convert(event) {
-        var result = 0;
-        if (event.target.name == "secondAmount") {
-            result = this.calculateConversion(this.secondAmount, this.rates[this.secondSelectedCurrency], this.rates[this.firstSelectedCurrency]);
-            if (!isNaN(result))
-                this.firstAmount = result.toFixed(2);
-        }
-        else {
-            result = this.calculateConversion(this.firstAmount, this.rates[this.firstSelectedCurrency], this.rates[this.secondSelectedCurrency]);
-            if (!isNaN(result))
-                this.secondAmount = result.toFixed(2);
-        }
+        const isFirstAmount = event.target.name === 'firstAmount';
+        const amount = isFirstAmount ? this.firstAmount : this.secondAmount;
+        const rates = [this.rates[this.firstSelectedCurrency], this.rates[this.secondSelectedCurrency]];
+        const result = this.calculateConversion(amount, ...(isFirstAmount ? rates : rates.reverse()));
+        if (isNaN(result)) return;
+        this[isFirstAmount ? 'secondAmount' : 'firstAmount'] = result.toFixed(2);
     }
 
-    checkIfShouldConvert() {
+    canConvert() {
         if (isNaN(this.rates[this.firstSelectedCurrency])
             || isNaN(this.rates[this.secondSelectedCurrency])) {
             return false;
@@ -55,16 +50,16 @@ export default class CurrencyConverterLWC extends LightningElement {
         var caller = event.target.name;
         var val = event.target.value;
 
-        if (caller == 'firstAmount')
+        if (caller === 'firstAmount')
             this.firstAmount = val;
-        else if (caller == 'secondAmount')
+        else if (caller === 'secondAmount')
             this.secondAmount = val;
-        else if (caller == 'firstSelectedCurrency')
+        else if (caller === 'firstSelectedCurrency')
             this.firstSelectedCurrency = val;
-        else if (caller == 'secondSelectedCurrency')
+        else if (caller === 'secondSelectedCurrency')
             this.secondSelectedCurrency = val;
 
-        if (this.checkIfShouldConvert()) {
+        if (this.canConvert()) {
             this.convert(event);
         }
     }
