@@ -4,7 +4,7 @@ import CurrencyConverterLWC from "c/currencyConverterLWC";
 describe("c-currency-converter-l-w-c", () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
-      json: () => Promise.resolve({ rates: { CAD: 1.42 } })
+      json: () => Promise.resolve({ rates: { 'CAD': 1.42 } })
     })
   );
 
@@ -13,6 +13,7 @@ describe("c-currency-converter-l-w-c", () => {
     while (document.body.firstChild) {
       document.body.removeChild(document.body.firstChild);
     }
+    fetch.mockClear();
   });
 
   it("creates element", () => {
@@ -20,5 +21,6 @@ describe("c-currency-converter-l-w-c", () => {
       is: CurrencyConverterLWC
     });
     document.body.appendChild(element);
+    expect(1).toBe(1);
   });
 });
