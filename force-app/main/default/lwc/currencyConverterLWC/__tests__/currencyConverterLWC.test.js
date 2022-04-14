@@ -4,7 +4,7 @@ import CurrencyConverterLWC from "c/currencyConverterLWC";
 describe("c-currency-converter-l-w-c", () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
-      json: () => Promise.resolve({ rates: { 'CAD': 1.42 } })
+      json: () => Promise.resolve({ rates: { CAD: 1.42 } })
     })
   );
 
@@ -21,6 +21,9 @@ describe("c-currency-converter-l-w-c", () => {
       is: CurrencyConverterLWC
     });
     document.body.appendChild(element);
-    expect(1).toBe(1);
+    let firstCurrencySelector = element.shadowRoot.querySelector(
+      'lightning-combobox[name="firstSelectedCurrency"]'
+    );
+    expect(firstCurrencySelector.value).toBe("CAD");
   });
 });

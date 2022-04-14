@@ -1,29 +1,54 @@
 <template>
-    <div class="c-container lgc-bg">
-        <h1 class="slds-page-header">Currency converter LWC</h1>
-        <lightning-layout padding="around-small">
-            <lightning-layout-item flexibility="auto" padding="around-small">
-                <lightning-input min="0" type="number" step="0.01" name="firstAmount" value={firstAmount}
-                    onchange={handleChange}>
-                </lightning-input>
-            </lightning-layout-item>
-            <lightning-layout-item flexibility="auto, no-grow" padding="around-small">
-                <lightning-combobox name="firstSelectedCurrency" label="" value={firstSelectedCurrency}
-                    placeholder="Select" options={currencies} onchange={handleChange}>
-                </lightning-combobox>
-            </lightning-layout-item>
-        </lightning-layout>
-        <lightning-layout>
-            <lightning-layout-item flexibility="auto" padding="around-small">
-                <lightning-input min="0" type="number" step="0.01" name="secondAmount" value={secondAmount}
-                    onchange={handleChange}>
-                </lightning-input>
-            </lightning-layout-item>
-            <lightning-layout-item flexibility="auto, no-grow" padding="around-small">
-                <lightning-combobox name="secondSelectedCurrency" label="" value={secondSelectedCurrency}
-                    placeholder="Select" options={currencies} onchange={handleChange}>
-                </lightning-combobox>
-            </lightning-layout-item>
-        </lightning-layout>
-    </div>
+  <div class="c-container lgc-bg">
+    <h1 class="slds-page-header">Currency converter LWC</h1>
+    <lightning-layout>
+      <lightning-layout-item flexibility="auto" padding="around-small">
+        <lightning-input
+          min="0"
+          type="number"
+          step="0.01"
+          name="firstAmount"
+          value={firstAmount}
+          onchange={handleChange}
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item flexibility="auto, no-grow" padding="around-small">
+        <lightning-combobox
+          class="testclass"
+          name="firstSelectedCurrency"
+          label=""
+          value={firstSelectedCurrency}
+          placeholder="Select"
+          options={currencies}
+          onchange={handleChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout>
+      <lightning-layout-item flexibility="auto" padding="around-small">
+        <lightning-input
+          min="0"
+          type="number"
+          step="0.01"
+          name="secondAmount"
+          value={secondAmount}
+          onchange={handleChange}
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item flexibility="auto, no-grow" padding="around-small">
+        <lightning-combobox
+          name="secondSelectedCurrency"
+          label=""
+          value={secondSelectedCurrency}
+          placeholder="Select"
+          options={currencies}
+          onchange={handleChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
 </template>
