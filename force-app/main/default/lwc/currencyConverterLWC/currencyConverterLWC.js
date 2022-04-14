@@ -17,6 +17,10 @@ export default class CurrencyConverterLWC extends LightningElement {
           value: rate
         }));
         this.rates = data.rates;
+        if (this.currencies.length > 1) {
+          this.firstSelectedCurrency = this.currencies[0];
+          this.secondSelectedCurrency = this.currencies[1];
+        }
       });
   }
 
